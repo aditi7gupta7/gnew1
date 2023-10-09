@@ -1,35 +1,21 @@
 version: 2.1
 
-defaults: &defaults
+jobs:
+ build:
   docker:
     - image: circleci/openjdk:11
 
-jobs:
-  setup:
-   <<: *defaults
-   steps:
-     - checkout
-     - run:
-        name: set up Environment
+  steps:
+    - checkout
+    - run:
+       name: Build Java App
         command: |
-          # setup command
-          echo "this is shared setup"
-
-  build:
-   <<: *defaults
-   steps:
-     - setup: 
-     - run:
-         name: Build Java App
-         command: |
-         #build command
-         ./gradlew build
+          # build command
+          ./gradlew build
 
 workflows:
   version: 2
   build:
     jobs:
-      - setup:
       - build:
-          requires:
-            - setup
+          context: org-global-context
