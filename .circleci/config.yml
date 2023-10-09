@@ -29,5 +29,7 @@ workflows:
   version: 2
   build:
     jobs:
+      - setup:
       - build:
-          context: org-global-context
+          requires:
+            - setup
