@@ -1,4 +1,4 @@
-# .cicleci/config.yml
+version: 2.1
 
 defaults: &defaults
   docker:
@@ -12,7 +12,7 @@ jobs:
      - run:
         name: set up Environment
         command: |
-          # build command
+          # setup command
           echo "this is shared setup"
 
   build:
