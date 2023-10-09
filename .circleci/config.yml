@@ -5,15 +5,25 @@ defaults: &defaults
     - image: circleci/openjdk:11
 
 jobs:
-  build:
+  setup:
    <<: *defaults
    steps:
      - checkout
      - run:
-        name: Build Java App
+        name: set up Environment
         command: |
           # build command
-          ./gradlew build
+          echo "this is shared setup"
+
+  build:
+   <<: *defaults
+   steps:
+     - setup: 
+     - run:
+         name: Build Java App
+         command: |
+         #build command
+         ./gradlew build
 
 workflows:
   version: 2
